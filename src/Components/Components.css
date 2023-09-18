@@ -1,0 +1,89 @@
+.relative{
+  position: relative;
+}
+
+/**HEADER.JSX STYLE**/
+.nav-container{
+  box-shadow: 1px 3px 6px #6c675b;
+  background-color: #aaaaef4a; 
+}
+
+
+#location-suggestions ul{
+  text-align: start;
+  border: 1px solid #d0cfcf;
+  border-radius: 2px 2px 10px 10px;
+  list-style: none;
+  padding-left: 0;
+  background-color: #fff;
+  overflow-y: auto;
+  width: 100%;
+  z-index: 9;
+  position: absolute;
+  max-height: 300px;
+}
+
+#location-suggestions ul li {
+  border-bottom: 1px solid #d0cfcf;
+  padding: 3%;
+}
+
+#location-suggestions ul li:hover{
+  background-color: #c7c7c740;
+}
+
+.sugg-ciudad{
+  margin-right: 8px;
+}
+
+.sugg-pais{
+  background-color: #efefef;
+  padding: 3px;
+  border-radius: 4px;
+  display: inline-block;
+  color: #767676;
+  font-weight: normal;
+  white-space: nowrap;
+  line-height: 12px;
+}
+
+.sugg-region{
+  font-size: .6875rem;
+  display: block;
+  padding-left: 4%;
+}
+
+
+/**HEADER.JSX STYLE**/
+
+/**VENTANA PARA CAMBIAR UNIDADES**/
+
+
+#window-change-units form{
+  text-align: start;
+  border: 1px solid #d0cfcf;
+  border-radius: 2px 2px 10px 10px;
+  list-style: none;
+  padding: 5%;
+  background-color: #fff;
+  overflow-y: auto;
+  width: 90%;
+  z-index: 2;
+  position: absolute;
+  max-height: 400px;
+}
+
+.btn-header{
+  background-color: #6262b5 !important;
+  border-color: #6262b5 !important;
+  width: 100%;
+}
+
+.btn-header:hover{
+  background-color: white !important;
+  border-color: #6262b5 !important;
+  color: #6262b5 !important;
+}
+
+/**VENTANA PARA CAMBIAR UNIDADES**/
+

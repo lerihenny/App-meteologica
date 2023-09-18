@@ -5,7 +5,53 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #80808021 !important;
 }
+
+.dark-theme {
+  background-color: #1E1E1E !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .data-container{
+  background-color: #1E1E1E !important;
+    color: #ffffff !important;
+
+}
+
+.dark-theme table#week-data-table{
+  background-color: #1E1E1E !important;
+  color: #ffffff !important;
+}
+
+.dark-theme table#week-data-table th {
+  background-color: #1E1E1E; 
+  color: white; 
+}
+
+.dark-theme table#week-data-table td {
+  background-color: #1E1E1E; 
+    color: #ffffff !important;
+
+}
+
+.dark-theme div#location-suggestions ul{
+  background-color: #1E1E1E; 
+    color: #ffffff !important;
+
+}
+
+.dark-theme div#window-change-units form{
+  background-color: #1E1E1E !important;
+    color: #ffffff !important;
+ 
+}
+
+.dark-theme .modal-content{
+  background-color: #1E1E1E; 
+    color: #ffffff !important;
+}
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

@@ -1,0 +1,125 @@
+/*GENERAL*/
+    .hide{
+    display: none;
+    }
+
+    .show{
+    display: contents;
+    }
+
+    .pointer{
+    cursor: pointer;
+    }
+
+    .center{
+    margin-right: auto;
+    margin-left: auto;
+    }
+
+    .bold{
+    font-weight: bold;
+    }
+
+    .data-container{
+    border-radius: 5px;
+    border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color)!important;
+    background-color: white;
+    }
+
+    .capitalize{
+    text-transform: capitalize;
+    }
+
+    .display-grid{
+    display: grid;
+    }
+
+    .max-temp{
+        color: red;
+    }
+
+    .min-temp{
+        color: blue;
+    }
+
+    .overflow{
+        overflow: auto;
+    }
+
+/*GENERAL*/
+
+/**Pronostico actual**/
+.data-container .row{
+    justify-content: space-around;
+}
+
+.row-description{
+    display: flex;
+    justify-content: space-around;
+}
+
+.single-current{
+    display: flex;
+    align-items: center;
+    font-size: 0.86rem;
+}
+
+.current-temp{
+    font-size: 2rem !important;
+}
+
+.current-feelslike{
+    font-size: 0.9rem;
+}
+/**Pronostico actual**/
+
+/*PRONOSTICO ACTUAL POR HORA*/
+.sensacion-hora{
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-text-table-hora{
+    font-size: 0.8rem;
+}
+/*PRONOSTICO ACTUAL POR HORA*/
+
+
+/**PRONOSTICO SEMANAL**/
+.weekData-fecha{
+    font-size: 0.85rem;
+    color: #a39f9f;
+}
+
+.weekData-rangoTemp{
+    font-size: 1.1rem;
+}
+
+.weekData-selected{
+    background-color: #c7c7c740;
+}
+
+.weekData-grid{
+    display: grid;
+}
+
+.weekData-grid:hover{
+    background-color: #c7c7c740;
+}
+
+.weekData-grid:active{
+    background-color: #c7c7c740;
+}
+
+#week-data-table td{
+    font-size: 0.9rem;
+}
+
+.temp-por-hora{
+    font-size: 1.45rem !important;
+}
+
+
+/**PRONOSTICO SEMANAL**/
