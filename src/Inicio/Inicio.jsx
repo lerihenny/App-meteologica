@@ -4,10 +4,7 @@ import { getDataByWeek } from "./../api/info";
 import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faCloudRain, faWind, faTemperatureHalf, faHandHoldingDroplet, faBinoculars, faCloud, faCompass, faSnowflake, faPlay,  } from '@fortawesome/free-solid-svg-icons'
 import './Inicio.css';
-
 import Header from "../Components/Header";
-//import Chart from '../Components/Chart'
-//import Geolocation from './../Components/Geolocation'
 
 class Inicio extends React.Component {
   constructor(props){
@@ -50,7 +47,6 @@ class Inicio extends React.Component {
       //Mostrar Clima de Madrid como generico porque no se puede acceder a la geolocalizacion del navegador
       this.setState({ error: 'La geolocalización no está disponible en tu navegador.' });
     }
-
   }
 
   handleChange(e, input) {
