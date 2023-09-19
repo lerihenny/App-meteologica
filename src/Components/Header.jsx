@@ -13,6 +13,7 @@ import "./../Inicio/Inicio.css";
 class Header extends React.Component{
   constructor(props){
     super(props);
+    this.outSiteClickSeccion = React.createRef();
     this.state = {
       searchLocaltion: '',
       units: this.props.units,
@@ -34,7 +35,23 @@ class Header extends React.Component{
     if(this.state.isChecked === true){
       document.body.classList.add('dark-theme');
     }
+
+    // Agrega el evento onMouseLeave cuando el componente se monta.
+    this.outSiteClickSeccion.current.addEventListener('mouseleave', this.handleMouseLeave);
+
+    // Agrega el evento de clic al documento global.
+    document.addEventListener('click', this.handleClickOutside);
   }
+
+  handleClickOutside = (event) => {
+    // Verifica si el clic ocurrió fuera de la sección.
+    if (this.outSiteClickSeccion.current && !this.outSiteClickSeccion.current.contains(event.target) && (this.state.displayChangeUnits === 'show' || this.state.displaySearching === 'show')) {
+      this.setState({
+        displayChangeUnits: 'hide',
+        displaySearching: 'hide'
+      })
+    }
+  };
 
   handleChange(e, input) {
     const value = e.target.value;
@@ -101,6 +118,20 @@ class Header extends React.Component{
       isChecked: theme
     })
   }
+
+  changeUnitsWindow(){
+    this.setState({
+      displayChangeUnits: this.state.displayChangeUnits === 'show' ? 'hide' : 'show'
+    })
+  }
+
+  componentWillUnmount(){
+    // Elimina el evento onMouseLeave cuando el componente se desmonta.
+    this.outSiteClickSeccion.current.removeEventListener('mouseleave', this.handleMouseLeave);
+
+    // Elimina el evento de clic al documento global para evitar pérdidas de memoria.
+    document.removeEventListener('click', this.handleClickOutside);
+  }
   
   render(){
     return(
@@ -110,7 +141,7 @@ class Header extends React.Component{
             <Col md={2} id='logo'>
               <img src={logo} alt="LM" className='w-25 mb-1'/>
             </Col>
-            <Col md={5} className='relative mb-2' id="busqueda">
+            <Col md={5} className='relative mb-2' id="busqueda" ref={this.outSiteClickSeccion}>
               <Form className="center">
                 <FormGroup> 
                   <Form.Control 
@@ -143,71 +174,73 @@ class Header extends React.Component{
               </div>
             </Col>  
             <Col md={2} xs={6} className='relative' id="cambiar-unidades-tema">
-              <Button 
-                className='btn-header' 
-                onClick={() => this.setState({displayChangeUnits: this.state.displayChangeUnits === 'show' ? 'hide' : 'show'})}
-              >Unidades / Tema</Button>
-              <div id='window-change-units' className={this.state.displayChangeUnits}>
-                <Form className='center'>
-                  <Col md="12">
-                    <Form.Label>Temperatura:</Form.Label>
-                    <Form.Select 
-                    aria-label="Cambiar unidad de temperatura" 
-                    size="sm"
-                    value={this.state.units.temp}
-                    onChange={(event) => this.props.changeUnits(event, "temp")}
-                    >
-                      <option value="c">Celsius (°C)</option>
-                      <option value="f">Fahrenheit (°F)</option>
-                    </Form.Select>
-                  </Col>
-                  <Col md="12" className='mt-1'>
-                  <Form.Label>Viento:</Form.Label>
-                    <Form.Select 
-                    aria-label="Cambiar unidad de viento" 
-                    size="sm"
-                    value={this.state.units.wind}
-                    onChange={(event) => this.props.changeUnits(event, "wind")}
-                    >
-                      <option value="kph">Kph</option>
-                      <option value="mph">mph</option>
-                    </Form.Select>
-                  </Col>
-                  <Col md="12" className='mt-1'>
-                    <Form.Label>Lluvia:</Form.Label>
-                    <Form.Select 
-                    aria-label="Cambiar unidad de lluvia" 
-                    size="sm"
-                    value={this.state.units.precip}
-                    onChange={(event) => this.props.changeUnits(event, "precip")}
-                    >
-                      <option value="in">in</option>
-                      <option value="mm">mm</option>
-                    </Form.Select>
-                  </Col>
-                  <Col md="12" className='mt-1'>
-                    <Form.Label>Visibilidad:</Form.Label>
-                    <Form.Select 
-                    aria-label="Cambiar unidad de visibilidad" 
-                    size="sm"
-                    value={this.state.units.vis}
-                    onChange={(event) => this.props.changeUnits(event, "vis")}
-                    >
-                      <option value="km">km</option>
-                      <option value="miles">miles</option>
-                    </Form.Select>
-                  </Col>
-                  <Col md="12" className='mt-1'>
-                    <Form.Label>Tema:</Form.Label>
-                    <Form.Check
-                      type="switch"
-                      id="tema-switch"
-                      label="Claro/Oscuro"
-                      checked={this.state.isChecked}
-                      onChange={() => this.toggleSwitch()}
-                    />
-                  </Col>
-                </Form>
+              <div id='change-units-section' ref={this.outSiteClickSeccion}>
+                <Button 
+                  className='btn-header' 
+                  onClick={() => this.setState({displayChangeUnits: this.state.displayChangeUnits === 'show' ? 'hide' : 'show'})}
+                >Unidades / Tema</Button>
+                <div id='window-change-units' className={this.state.displayChangeUnits} >
+                  <Form className='center'>
+                    <Col md="12">
+                      <Form.Label>Temperatura:</Form.Label>
+                      <Form.Select 
+                      aria-label="Cambiar unidad de temperatura" 
+                      size="sm"
+                      value={this.state.units.temp}
+                      onChange={(event) => this.props.changeUnits(event, "temp")}
+                      >
+                        <option value="c">Celsius (°C)</option>
+                        <option value="f">Fahrenheit (°F)</option>
+                      </Form.Select>
+                    </Col>
+                    <Col md="12" className='mt-1'>
+                    <Form.Label>Viento:</Form.Label>
+                      <Form.Select 
+                      aria-label="Cambiar unidad de viento" 
+                      size="sm"
+                      value={this.state.units.wind}
+                      onChange={(event) => this.props.changeUnits(event, "wind")}
+                      >
+                        <option value="kph">Kph</option>
+                        <option value="mph">mph</option>
+                      </Form.Select>
+                    </Col>
+                    <Col md="12" className='mt-1'>
+                      <Form.Label>Lluvia:</Form.Label>
+                      <Form.Select 
+                      aria-label="Cambiar unidad de lluvia" 
+                      size="sm"
+                      value={this.state.units.precip}
+                      onChange={(event) => this.props.changeUnits(event, "precip")}
+                      >
+                        <option value="in">in</option>
+                        <option value="mm">mm</option>
+                      </Form.Select>
+                    </Col>
+                    <Col md="12" className='mt-1'>
+                      <Form.Label>Visibilidad:</Form.Label>
+                      <Form.Select 
+                      aria-label="Cambiar unidad de visibilidad" 
+                      size="sm"
+                      value={this.state.units.vis}
+                      onChange={(event) => this.props.changeUnits(event, "vis")}
+                      >
+                        <option value="km">km</option>
+                        <option value="miles">miles</option>
+                      </Form.Select>
+                    </Col>
+                    <Col md="12" className='mt-1'>
+                      <Form.Label>Tema:</Form.Label>
+                      <Form.Check
+                        type="switch"
+                        id="tema-switch"
+                        label="Claro/Oscuro"
+                        checked={this.state.isChecked}
+                        onChange={() => this.toggleSwitch()}
+                      />
+                    </Col>
+                  </Form>
+                </div>
               </div>
             </Col>
             <Col md={3} xs={6} id='hazte-premium'>

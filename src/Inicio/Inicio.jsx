@@ -126,7 +126,7 @@ class Inicio extends React.Component {
   }
 
   render() {
-    const { locationData, currentData, weekData, units, daySelected} = this.state
+    const { locationData, currentData, weekData, units, daySelected } = this.state
     if(currentData.length !== 0){
       return(<>
         <Header selectCity={this.selectCity} units={units} changeUnits={this.changeUnits}/>
